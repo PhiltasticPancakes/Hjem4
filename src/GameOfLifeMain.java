@@ -3,11 +3,13 @@ import java.io.*;
 public class GameOfLifeMain {
 	public static void main(String[] args)
 	throws InterruptedException{
-		int size = 15;
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter size of grid: ");
+		int size = sc.nextInt();
 		GameOfLife board = new GameOfLife(size);
 		for(int i=0; i<100; i++) {
 			StdDraw.clear();
-			StdDraw.text(-1, -1, ""+i);
+			StdDraw.text(0, 0, ""+i);
 			board.nextState();
 			board.draw();
 			StdDraw.show(500);
@@ -26,7 +28,7 @@ public class GameOfLifeMain {
 				System.out.println("File not found");
 			}
 		}
-		
+		Scanner linjeScan;
 		String line = input.nextLine();
 		//This line finds the amounth of numbers in a line, assuming only 1 whitepspace char between each number
 		int size=(line.length()+1)/2;
