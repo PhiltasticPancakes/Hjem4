@@ -3,7 +3,9 @@ import java.io.*;
 public class GameOfLifeMain {
 	public static void main(String[] args)
 	throws InterruptedException{
-		int size = 15;
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter size of grid: ");
+		int size = sc.nextInt();
 		GameOfLife board = new GameOfLife(size);
 		for(int i=0; i<100; i++) {
 			StdDraw.clear();
