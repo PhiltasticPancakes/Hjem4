@@ -4,10 +4,10 @@ public class GameOfLife {
 	private int size;
 	private int[][] matrix;
 	
-	public GameOfLife(int n) {
+	public GameOfLife(int size) {
 		Random rand = new Random();
-		this.size=n;
-		this.matrix=new int[n][n];
+		this.size=size;
+		this.matrix=new int[size][size];
 		for(int i=0; i<size; i++) {
 			for(int j=0; j<size; j++) {
 				setCell(i, j, rand.nextBoolean());
@@ -29,7 +29,10 @@ public class GameOfLife {
 		int alives=0;
 		for(int i=-1; i<=1; i++) {
 			for(int j=-1; j<=1; j++) {
-				alives+=(x+i>=0 && x+i<size && y+j>=0 && y+j<size && !(i==0 && j==0))? matrix[x+i][y+j] : 0;
+				int tempx = (x+i<0 || x+i>=size)? size-(Math.abs(x+i)) : x+i;
+				int tempy = (y+j<0 || y+j>=size)? size-(Math.abs(y+j)) : y+j;
+				
+				alives+=!(i==0 && j==0)? matrix[tempx][tempy] : 0;
 			}
 		}
 			
@@ -37,20 +40,26 @@ public class GameOfLife {
 	}
 	
 	public void nextState(){
-		int alives;
+		int alives=0;
+		int aliveNeighbours;
 		int[][] nextState = new int[size][size];
 		for(int x=0; x<size; x++) {
 			for(int y=0; y<size; y++) {
-				alives=liveNeighbours(x,y);
+				aliveNeighbours=liveNeighbours(x,y);
 				//System.out.println("alives at: " + i + "," + j + ": " + alives);
-				if(alives==3) {
+				if(aliveNeighbours==3) {
 					nextState[x][y]=1;
-				} else if(alives>3 || alives<2){
+					alives++;
+				} else if(aliveNeighbours>3 || aliveNeighbours<2){
 					nextState[x][y]=0;
 				} else {
 					nextState[x][y]=matrix[x][y];
+					alives+=matrix[x][y];
 				}
 			}
+		}
+		if(alives==0) {
+			System.exit(0);
 		}
 		matrix=nextState;
 	}
