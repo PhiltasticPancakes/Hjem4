@@ -17,7 +17,6 @@ public class GameOfLifeMain {
 
 
 	}
-	
 	public int[][] loadFile(String fileName) {
 		Scanner input;
 		while(true) {
