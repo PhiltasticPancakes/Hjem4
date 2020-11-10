@@ -65,7 +65,8 @@ public class GameOfLife {
 	public void draw() {
 		StdDraw.setXscale(0 - MARGIN, size + MARGIN);
 		StdDraw.setYscale(0 - MARGIN, size + MARGIN);
-		StdDraw.setPenRadius((double)Math.pow(size, 2)+size/(5/size));
+		double penRadius = Math.pow(size, 2)/(Math.pow(size, 3)+400);
+		StdDraw.setPenRadius(penRadius);
 		StdDraw.setPenColor(StdDraw.BLACK);
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
