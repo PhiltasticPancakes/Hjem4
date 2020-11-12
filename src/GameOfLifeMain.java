@@ -28,9 +28,8 @@ public class GameOfLifeMain {
 				System.out.println("File not found");
 			}
 		}
-		Scanner linjeScan;
 		String line = input.nextLine();
-		//This line finds the amounth of numbers in a line, assuming only 1 whitepspace char between each number
+		//This line finds the amount of numbers in a line, assuming only 1 whitespace char between each number
 		int size=(line.length()+1)/2;
 		int[][] matrix = new int[size][size];
 		
