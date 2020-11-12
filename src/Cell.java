@@ -1,17 +1,17 @@
 import java.util.Random;
 public class Cell {
 private boolean alive;
-private char team;
+private int team;
+private Random rand = new Random();
 
-public Cell(boolean alive, char team) {
+public Cell(boolean alive, int team) {
 	this.alive=alive;
 	this.team=team;
 }
 
 public Cell() {
-	Random rand = new Random();
 	alive=rand.nextBoolean();
-	team=(rand.nextBoolean())? 'A' : 'B';
+	team=rand.nextInt(2);
 }
 
 
@@ -20,7 +20,7 @@ public boolean isAlive() {
 	
 }
 
-public char getTeam() {
+public int getTeam() {
 	return team;
 }
 
@@ -29,6 +29,9 @@ public void setAlive(boolean alive) {
 	this.alive=alive;
 }
 
+public void setTeam(int team) {
+	this.team=team;
+}
 
 
 }
