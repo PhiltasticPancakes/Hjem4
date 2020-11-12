@@ -15,7 +15,6 @@ public class GameOfLifeMain {
 			StdDraw.show(50);
 		}
 
-
 	}
 	public int[][] loadFile(String fileName) {
 		Scanner input;
