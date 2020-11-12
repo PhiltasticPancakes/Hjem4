@@ -3,12 +3,12 @@ import java.util.Random;
 public class GameOfLife {
 	private static final int MARGIN = 2;
 	private int size;
-	private int[][] matrix;
+	private Cell[][] matrix;
 
 	public GameOfLife(int n) {
 		Random rand = new Random();
 		this.size = n;
-		this.matrix = new int[n][n];
+		this.matrix = new Cell[n][n];
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
 				setCell(i, j, rand.nextBoolean());
@@ -16,14 +16,14 @@ public class GameOfLife {
 		}
 	}
 
-	public GameOfLife(int[][] initialstate) {
+	public GameOfLife(Cell[][] initialstate) {
 		this.matrix = initialstate;
 		this.size = matrix[0].length;
 
 	}
 
 	public boolean isAlive(int x, int y) {
-		return matrix[x][y] == 1;
+		return matrix[x][y].isAlive();
 	}
 
 	private int liveNeighbours(int x, int y) {
@@ -31,7 +31,7 @@ public class GameOfLife {
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
 				alives += (x + i >= 0 && x + i < size && y + j >= 0 && y + j < size && !(i == 0 && j == 0))
-						? matrix[x + i][y + j]
+						? (matrix[x + i][y + j].isAlive())? 1 : 0
 						: 0;
 			}
 		}
@@ -41,15 +41,15 @@ public class GameOfLife {
 
 	public void nextState() {
 		int alives;
-		int[][] nextState = new int[size][size];
+		Cell[][] nextState = new Cell[size][size];
 		for (int x = 0; x < size; x++) {
 			for (int y = 0; y < size; y++) {
 				alives = liveNeighbours(x, y);
 				// System.out.println("alives at: " + i + "," + j + ": " + alives);
 				if (alives == 3) {
-					nextState[x][y] = 1;
+					nextState[x][y].setAlive(true);;
 				} else if (alives > 3 || alives < 2) {
-					nextState[x][y] = 0;
+					nextState[x][y].setAlive(false);;
 				} else {
 					nextState[x][y] = matrix[x][y];
 				}
@@ -59,7 +59,7 @@ public class GameOfLife {
 	}
 
 	public void setCell(int x, int y, boolean alive) {
-		matrix[x][y] = (alive) ? 1 : 0;
+		matrix[x][y].setAlive(alive);;
 	}
 
 	public void draw() {
@@ -70,7 +70,7 @@ public class GameOfLife {
 		StdDraw.setPenColor(StdDraw.BLACK);
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
-				if (matrix[i][j] == 1) {
+				if (matrix[i][j].isAlive()) {
 					StdDraw.point(j, i);
 				}
 			}
