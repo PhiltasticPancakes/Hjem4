@@ -17,6 +17,6 @@ public class Tidsskrift {
 	}
 	
 	public String toString() {
-		return titel;
+		return titel + ", " + forlag + ", " + issn;
 	}
 }

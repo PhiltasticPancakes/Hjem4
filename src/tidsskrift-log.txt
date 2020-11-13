@@ -1,0 +1,27 @@
+Test 1: SUCCESS. Tidsskrift.titel = "Numerical Recipes - 3rd Edition"   Forlag.navn = "Cambridge University Press"   Forlag.sted = "United States of America"   Tidsskrift.issn = "978-0-521-88068-8"   
+Received forlag.toString(): "Numerical Recipes - 3rd Edition, Cambridge University Press, United States of America, 978-0-521-88068-8"
+
+Test 2: SUCCESS. Tidsskrift.titel = "Almen Semiotik"   Forlag.navn = "Aarhus Universitets Forlag"   Forlag.sted = "Denmark"   Tidsskrift.issn = "87-7288-856-3"   
+Received forlag.toString(): "Almen Semiotik, Aarhus Universitets Forlag, Denmark, 87-7288-856-3"
+
+Test 3: SUCCESS. Tidsskrift.titel = "Aplikované pohybové aktivity v teorii a praxi on-line"   Forlag.navn = "Palacký University Press"   Forlag.sted = "Czech Republic"   Tidsskrift.issn = "1804-4220"   
+Received forlag.toString(): "Aplikované pohybové aktivity v teorii a praxi on-line, Palacký University Press, Czech Republic, 1804-4220"
+
+Test 4: SUCCESS. Tidsskrift.titel = "Neues aus Wissenschaft und Lehre der Heinrich-Heine-Universität Düsseldorf"   Forlag.navn = "University Press"   Forlag.sted = "Germany"   Tidsskrift.issn = " 978-3940671714"   
+Received forlag.toString(): "Neues aus Wissenschaft und Lehre der Heinrich-Heine-Universität Düsseldorf, University Press, Germany,  978-3940671714"
+
+Test 5: SUCCESS. Tidsskrift.titel = "傳播與社會學刊"   Forlag.navn = "香港中文大學出版社"   Forlag.sted = "Hong Kong"   Tidsskrift.issn = "3214-2342"   
+Received forlag.toString(): "傳播與社會學刊, 香港中文大學出版社, Hong Kong, 3214-2342"
+
+Test 6: SUCCESS. Tidsskrift.titel = "Droit des aides publiques aux entreprises"   Forlag.navn = "Presses universitaires de France"   Forlag.sted = "France"   Tidsskrift.issn = "978-2-13-080051-4"   
+Received forlag.toString(): "Droit des aides publiques aux entreprises, Presses universitaires de France, France, 978-2-13-080051-4"
+
+Test 7: SUCCESS. Tidsskrift.titel = "The Art of Computer Programming Vol. 2: Seminumerical Recipes"   Forlag.navn = "Stanford University Press"   Forlag.sted = "United States of America"   Tidsskrift.issn = "0-201-89684-2"   
+Received forlag.toString(): "The Art of Computer Programming Vol. 2: Seminumerical Recipes, Stanford University Press, United States of America, 0-201-89684-2"
+
+Test 8: SUCCESS. Tidsskrift.titel = "En ukendt tidsskrift"   Forlag.navn = "Et et testforlag™®©℗"   Forlag.sted = "et sted"   Tidsskrift.issn = "312-3321"   
+Received forlag.toString(): "En ukendt tidsskrift, Et et testforlag™®©℗, et sted, 312-3321"
+
+Test 9: SUCCESS. Tidsskrift.titel = "Matematik 1: Kompendium over Efterårssemesterets eNoter"   Forlag.navn = "Polyteknisk Forlag👑"   Forlag.sted = "Danmark"   Tidsskrift.issn = "ukendt"   
+Received forlag.toString(): "Matematik 1: Kompendium over Efterårssemesterets eNoter, Polyteknisk Forlag👑, Danmark, ukendt"
+

@@ -1,0 +1,27 @@
+Test 1: SUCCESS. Forlag.navn = "Cambridge University Press"   Forlag.sted = "United States of America"   
+Received forlag.toString(): "Cambridge University Press, United States of America"
+
+Test 2: SUCCESS. Forlag.navn = "Aarhus Universitets Forlag"   Forlag.sted = "Denmark"   
+Received forlag.toString(): "Aarhus Universitets Forlag, Denmark"
+
+Test 3: SUCCESS. Forlag.navn = "Palacký University Press"   Forlag.sted = "Czech Republic"   
+Received forlag.toString(): "Palacký University Press, Czech Republic"
+
+Test 4: SUCCESS. Forlag.navn = "Düsseldorf University Press"   Forlag.sted = "Germany"   
+Received forlag.toString(): "Düsseldorf University Press, Germany"
+
+Test 5: SUCCESS. Forlag.navn = "香港中文大學出版社"   Forlag.sted = "Hong Kong"   
+Received forlag.toString(): "香港中文大學出版社, Hong Kong"
+
+Test 6: SUCCESS. Forlag.navn = "Presses universitaires de France"   Forlag.sted = "France"   
+Received forlag.toString(): "Presses universitaires de France, France"
+
+Test 7: SUCCESS. Forlag.navn = "Stanford University Press"   Forlag.sted = "United States of America"   
+Received forlag.toString(): "Stanford University Press, United States of America"
+
+Test 8: SUCCESS. Forlag.navn = "Et et testforlag™®©℗"   Forlag.sted = "et sted"   
+Received forlag.toString(): "Et et testforlag™®©℗, et sted"
+
+Test 9: SUCCESS. Forlag.navn = "Polyteknisk Forlag👑"   Forlag.sted = "Danmark"   
+Received forlag.toString(): "Polyteknisk Forlag👑, Danmark"
+

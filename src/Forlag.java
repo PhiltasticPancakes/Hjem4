@@ -9,7 +9,7 @@ public class Forlag {
 	}
 	
 	public String toString() {
-		return navn;
+		return navn + ", " + sted;
 	}
 	
 }
