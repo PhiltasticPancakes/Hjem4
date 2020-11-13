@@ -17,7 +17,7 @@ public class GameOfLifeMain {
 
 
 	}
-	public int[][] loadFile(String fileName) {
+	public Cell[][] loadFile(String fileName) {
 		Scanner input;
 		while(true) {
 			try {
@@ -30,16 +30,16 @@ public class GameOfLifeMain {
 		String line = input.nextLine();
 		//This line finds the amount of numbers in a line, assuming only 1 whitespace char between each number
 		int size=(line.length()+1)/2;
-		int[][] matrix = new int[size][size];
+		Cell[][] matrix = new Cell[size][size];
 		
 		Scanner lineScan = new Scanner(line);
 		for(int j = 0; j<size; j++) {
-			matrix[0][j]=lineScan.nextInt();
+			matrix[0][j]=new Cell(lineScan.nextInt()==1, 0);
 		}
 		for(int i = 1; i<size;i++) {
 			lineScan=new Scanner(input.nextLine());
 			for(int j = 0; j<size; j++) {
-				matrix[i][j]=lineScan.nextInt();
+				matrix[i][j]=new Cell(lineScan.nextInt()==1, 0);
 			}
 
 		}

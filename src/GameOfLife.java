@@ -20,7 +20,7 @@ public class GameOfLife {
 		this.size = matrix[0].length;
 
 	}
-
+	// might be redundant
 	public boolean isAlive(int x, int y) {
 		return matrix[x][y].isAlive();
 	}
@@ -67,9 +67,12 @@ public class GameOfLife {
 		matrix = nextState;
 	}
 
-	public void setCell(int x, int y, boolean alive) {
+	public void setCell(int x, int y, boolean alive, int team) {
 		matrix[x][y].setAlive(alive);
+		matrix[x][y].setTeam(team);
 	}
+	
+	
 
 	public void draw() {
 		StdDraw.setXscale(0 - MARGIN, size + MARGIN);
