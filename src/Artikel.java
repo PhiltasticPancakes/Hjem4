@@ -9,7 +9,6 @@ public class Artikel {
 		this.forfattere=forfattere;
 		this.titel=titel;
 		this.tidsskrift=tidsskrift;
-		
 	}
 	
 	public void setReferenceliste(Artikel[] referenceliste) {
