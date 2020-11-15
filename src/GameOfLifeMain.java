@@ -6,7 +6,7 @@ public class GameOfLifeMain {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Play game from file? (yes/no) ");
 		String fileGame = sc.next();
-		GameOfLife board = null;
+		GameOfLife board;
 		if (fileGame.contentEquals("yes")) {
 			String filename = null;
 			File file = null;
