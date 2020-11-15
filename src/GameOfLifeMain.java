@@ -4,10 +4,10 @@ import java.io.*;
 public class GameOfLifeMain {
 	public static void main(String[] args) throws FileNotFoundException {
 		Scanner sc = new Scanner(System.in);
-		System.out.print("Play game from file? (y/n)");
+		System.out.print("Play game from file? (yes/no) ");
 		String fileGame = sc.next();
 		GameOfLife board = null;
-		if (fileGame.contentEquals("y")) {
+		if (fileGame.contentEquals("yes")) {
 			String filename = null;
 			File file = null;
 			boolean fileFound = false;
@@ -24,6 +24,7 @@ public class GameOfLifeMain {
 			board = new GameOfLife(loadFile);
 
 		} else {
+			System.out.println("Generating random game \n");
 			System.out.print("Enter size of grid: ");
 			while (!sc.hasNextInt()) {
 				System.out.print("Please enter an integer: ");
@@ -49,7 +50,7 @@ public class GameOfLifeMain {
 			StdDraw.setPenColor(StdDraw.BLACK);
 			StdDraw.text(-1, -1, "" + i);
 			board.draw();
-			StdDraw.show(50);
+			StdDraw.show(40);
 			board.nextState();
 			i++;
 		}
