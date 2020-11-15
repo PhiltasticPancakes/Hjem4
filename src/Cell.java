@@ -77,7 +77,7 @@ public boolean equals(Object obj) {
 	return true;
 }
 
-// overwrite standard .toString method (primarely for fixing bugs)
+// overwrite standard .toString method (primarily for troubleshooting)
 @Override
 	public String toString() {
 		return alive + "-" + team;
