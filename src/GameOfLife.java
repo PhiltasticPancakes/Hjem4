@@ -97,7 +97,6 @@ public class GameOfLife {
 	}
 
 	public void draw() {
-
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
 				if (matrix[i][j].isAlive()) {
@@ -119,6 +118,10 @@ public class GameOfLife {
 	
 	public void toggleTorus(){
 		torus=!torus;
+	}
+	
+	public boolean hasTorus() {
+		return torus;
 	}
 
 }

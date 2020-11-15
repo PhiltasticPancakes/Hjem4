@@ -4,43 +4,73 @@ import java.io.*;
 public class GameOfLifeMain {
 	public static void main(String[] args) throws FileNotFoundException {
 		Scanner sc = new Scanner(System.in);
-		System.out.print("Play game from file? (yes/no) ");
-		String fileGame = sc.next();
-		GameOfLife board;
-		if (fileGame.contentEquals("yes")) {
-			String filename = null;
-			File file = null;
-			boolean fileFound = false;
-			while (!fileFound) {
-				System.out.print("Enter name of premade file: ");
-				filename = sc.next();
-				file = new File(filename);
-				fileFound = file.exists();
-				if (!fileFound) {
-					System.out.println("File not found, try again ");
-				}
+		GameOfLife board=null;
+		int choice=0;
+		while(choice!=1 && choice !=2) {
+			System.out.println("Enter number corresponding to action: \n"
+					+ "1 to load initial state from file \n"
+					+ "2 to generate a random initial state with given size \n");
+			try {
+				choice=sc.nextInt();
+				sc.nextLine();
+			} catch (Exception e) {
+				System.out.println("invalid input, try again");
+				sc.nextLine();
+				continue;
 			}
-			Cell[][] loadFile = loadFile(file);
-			board = new GameOfLife(loadFile);
+			System.out.println((choice==1 || choice== 2)? "" : "Input not valid, try again");
+		}
+		
+		if(choice==1) {
+			File file;
+			while(board==null) {
+				System.out.print("Enter name of premade file: ");
 
+				try {
+					file = new File(sc.next());
+					System.out.println();
+					board = new GameOfLife(loadFile(file));
+					System.out.println("File loaded succesfully!");
+				} catch (Exception e) {
+					System.out.println("Invalid filename");
+				}
+				sc.nextLine();
+			}
 		} else {
 			System.out.println("Generating random game \n");
-			System.out.print("Enter size of grid: ");
-			while (!sc.hasNextInt()) {
-				System.out.print("Please enter an integer: ");
-				sc.next();
+			while(board==null) {
+				System.out.print("Enter size of grid as positive integer: ");
+				try {
+					board = new GameOfLife(sc.nextInt());
+					sc.nextLine();
+				} catch (Exception e) {
+					System.out.println("Invalid input, try again");
+					sc.nextLine();
+				}	
+		}
+		choice=0;
+		while(choice!=2) {
+			choice=0;
+			System.out.println("Torus is currently " + (board.hasTorus()? "on" : "off"));
+			System.out.println("Enter number corresponding to action: \n"
+					+ "1 to toggle torus \n"
+					+ "2 to start game \n");
+			try {
+				choice=sc.nextInt();
+				sc.nextLine();
+			} catch (Exception e) {
+				System.out.println("invalid input, try again");
+				sc.nextLine();
+				continue;
 			}
+			System.out.println((choice==1 || choice== 2)? "" : "Input not valid, try again");
+			if(choice==1) {
+				board.toggleTorus();
+			}
+		}
+		
+		
 			
-			int size = sc.nextInt();
-			while (size <= 0) {
-				System.out.print("Please select a number greater than 0: ");
-				while (!sc.hasNextInt()) {
-					System.out.print("Please enter an integer: ");
-					sc.next();
-				}
-				size = sc.nextInt();
-			}
-			board = new GameOfLife(size);
 		}
 		int i = 0;
 		board.initialize();
