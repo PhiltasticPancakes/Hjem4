@@ -68,10 +68,7 @@ public class GameOfLife {
 				} else if (alives[team] > 3 || alives[team] < 2) {
 					nextState[x][y] = new Cell(false, matrix[x][y].getTeam());
 				} else {
-					nextState[x][y] = matrix[x][y];
-					if (nextState[x][y].isAlive() && nextState[x][y].getTeam()!=team) {
-						nextState[x][y].setTeam(team);
-					}
+					nextState[x][y] = new Cell(matrix[x][y].getTeam()==team && matrix[x][y].isAlive(), matrix[x][y].getTeam());
 
 				}
 				if(!nextState[x][y].equals(matrix[x][y]) && !active) {
