@@ -21,7 +21,7 @@ public class GameOfLife {
 		this.size = matrix[0].length;
 
 	}
-
+//	Currently unused
 	public boolean isAlive(int x, int y) {
 		return matrix[x][y].isAlive();
 	}
