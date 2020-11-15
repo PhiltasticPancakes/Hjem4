@@ -8,6 +8,5 @@ public class Letters {
 			letters+=word.length();
 		}
 		System.out.println(letters);
-		
 	}
 }
