@@ -63,9 +63,9 @@ public class GameOfLife {
 			for (int y = 0; y < size; y++) {
 				alives = liveNeighbours(x, y);
 				int team = (alives[0] == alives[1]) ? matrix[x][y].getTeam() : (alives[0] > alives[1] ? 0 : 1);
-				if (alives[team] == 3) {
+				if (alives[team] == 3 && alives[0]+alives[1]<4) {
 					nextState[x][y] = new Cell(true, team);
-				} else if (alives[team] > 3 || alives[team] < 2) {
+				} else if (alives[0]+alives[1] > 3 || alives[team] < 2) {
 					nextState[x][y] = new Cell(false, matrix[x][y].getTeam());
 				} else {
 					nextState[x][y] = new Cell(matrix[x][y].getTeam()==team && matrix[x][y].isAlive(), matrix[x][y].getTeam());
