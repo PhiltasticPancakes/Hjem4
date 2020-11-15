@@ -12,6 +12,5 @@ public class ArtikelTest {
 		Artikel artikel2 = new Artikel(forfattere2, "B", tidsskrifter[1]);
 		Artikel[] reflist1 = {artikel2};
 		artikel1.setReferenceliste(reflist1);
-		System.out.println(artikel1);
 	}
 }
