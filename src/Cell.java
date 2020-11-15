@@ -6,7 +6,7 @@ private Random rand = new Random();
 
 /**Used for creating new Cell type objects with specified start state
  * @param alive state of cell (boolean)
- * @param team team of cell (int)
+ * @param team int
  * @return a Cell type object with given state (boolean, int)
  */
 public Cell(boolean alive, int team) {
@@ -23,8 +23,8 @@ public Cell() {
 	team=rand.nextInt(2);
 }
 
-/**Used check if a cell si alive or not
- * @return boolean this returns alive state of Cell type object
+/**Used check if a cell is alive or not
+ * @return boolean state of Cell type object
  */
 public boolean isAlive() {
 	return alive;
@@ -32,7 +32,7 @@ public boolean isAlive() {
 }
 
 /**Used to check the team of given cell
- * @return int this returns team number of Cell type objects
+ * @return int team number of Cell type objects
  */
 public int getTeam() {
 	return team;
@@ -62,6 +62,7 @@ public int hashCode() {
 	return result;
 }
 
+// overwrite standard .equals method
 @Override
 public boolean equals(Object obj) {
 	if (this == obj)
@@ -76,7 +77,7 @@ public boolean equals(Object obj) {
 	return true;
 }
 
-
+// overwrite standard .toString method (primarely for fixing bugs)
 @Override
 	public String toString() {
 		return alive + "-" + team;
