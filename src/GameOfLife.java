@@ -5,10 +5,11 @@ public class GameOfLife {
 	private int size;
 	private Cell[][] matrix;
 	private boolean active = true;
+	private boolean torus = false;
 
-	public GameOfLife(int n) {
-		this.size = n;
-		this.matrix = new Cell[n][n];
+	public GameOfLife(int size) {
+		this.size = size;
+		matrix = new Cell[size][size];
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
 				matrix[i][j] = new Cell();
@@ -17,8 +18,8 @@ public class GameOfLife {
 	}
 
 	public GameOfLife(Cell[][] initialstate) {
-		this.matrix = initialstate;
-		this.size = matrix[0].length;
+		matrix = initialstate;
+		size = matrix[0].length;
 
 	}
 //	Currently unused
@@ -31,12 +32,18 @@ public class GameOfLife {
 		Cell tempCell;
 		int tempx;
 		int tempy;
+		boolean outOfY;
+		boolean outOfX;
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
-				tempx = (x + i < 0 || x + i >= size) ? size - (Math.abs(x + i)) : x + i;
-				tempy = (y + j < 0 || y + j >= size) ? size - (Math.abs(y + j)) : y + j;
-				tempCell = matrix[tempx][tempy];
-				alives[tempCell.getTeam()] += !(i == 0 && j == 0) ? (tempCell.isAlive() ? 1 : 0) : 0;
+				outOfY = (y + j < 0 || y + j >= size);
+				outOfX = (x + i < 0 || x + i >= size);
+				if(torus || !(outOfX || outOfY)) {				
+					tempx = (outOfX) ? size - (Math.abs(x + i)) : x + i;
+					tempy = (outOfY) ? size - (Math.abs(y + j)) : y + j;
+					tempCell = matrix[tempx][tempy];
+					alives[tempCell.getTeam()] += !(i == 0 && j == 0) ? (tempCell.isAlive() ? 1 : 0) : 0;
+				}
 			}
 
 		}
@@ -44,42 +51,31 @@ public class GameOfLife {
 	}
 
 	public void nextState() {
-		Cell[][] nextState = getNextState();
-		this.active = !isIdentical(matrix, nextState);
-		matrix = nextState;
+		matrix = getNextState();
 	}
 
-	private boolean isIdentical(Cell[][] matrix2, Cell[][] nextState) {
-		boolean cellsEqual = true;
-		
-		for (int x = 0; x < nextState.length; x++) {
-			for (int y = 0; y < nextState[x].length; y++) {
-				cellsEqual &= matrix2[x][y].equals(nextState[x][y]);
-				if (!cellsEqual) {
-					return cellsEqual;
-				}
-			}
-		}
-		return cellsEqual;
-	}
 
 	private Cell[][] getNextState() {
 		int alives[];
 		Cell[][] nextState = new Cell[size][size];
+		active=false;
 		for (int x = 0; x < size; x++) {
 			for (int y = 0; y < size; y++) {
 				alives = liveNeighbours(x, y);
 				int team = (alives[0] == alives[1]) ? matrix[x][y].getTeam() : (alives[0] > alives[1] ? 0 : 1);
 				if (alives[team] == 3) {
-					nextState[x][y] = new Cell(true, (team == 0) ? 0 : 1);
+					nextState[x][y] = new Cell(true, team);
 				} else if (alives[team] > 3 || alives[team] < 2) {
 					nextState[x][y] = new Cell(false, matrix[x][y].getTeam());
 				} else {
 					nextState[x][y] = matrix[x][y];
-					if (nextState[x][y].isAlive()) {
+					if (nextState[x][y].isAlive() && nextState[x][y].getTeam()!=team) {
 						nextState[x][y].setTeam(team);
 					}
 
+				}
+				if(!nextState[x][y].equals(matrix[x][y]) && !active) {
+					this.active=true;
 				}
 			}
 		}
@@ -115,9 +111,14 @@ public class GameOfLife {
 			}
 		}
 	}
+	
 
 	public boolean isActive() {
 		return active;
+	}
+	
+	public void toggleTorus(){
+		torus=!torus;
 	}
 
 }
