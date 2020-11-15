@@ -22,7 +22,6 @@ public class GameOfLife {
 
 	}
 
-	// might be redundant
 	public boolean isAlive(int x, int y) {
 		return matrix[x][y].isAlive();
 	}
@@ -108,6 +107,7 @@ public class GameOfLife {
 				if (matrix[i][j].isAlive()) {
 					StdDraw.setPenColor(matrix[i][j].getTeam() == 0 ? StdDraw.BLUE : StdDraw.RED);
 					StdDraw.point(j, i);
+//					For printing coordinates on the game
 //				} else {
 //					StdDraw.setPenColor(StdDraw.BLACK);
 //					StdDraw.text(j, i, "("+j+","+i+")");
