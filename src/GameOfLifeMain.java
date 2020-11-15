@@ -5,9 +5,9 @@ public class GameOfLifeMain {
 	public static void main(String[] args) throws FileNotFoundException {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Play game from file? (y/n)");
-		String premade = sc.next();
+		String fileGame = sc.next();
 		GameOfLife board = null;
-		if (premade.contentEquals("y")) {
+		if (fileGame.contentEquals("y")) {
 			String filename = null;
 			File file = null;
 			boolean fileFound = false;
@@ -25,7 +25,20 @@ public class GameOfLifeMain {
 
 		} else {
 			System.out.print("Enter size of grid: ");
+			while (!sc.hasNextInt()) {
+				System.out.print("Please enter an integer: ");
+				sc.next();
+			}
+			
 			int size = sc.nextInt();
+			while (size <= 0) {
+				System.out.print("Please select a number greater than 0: ");
+				while (!sc.hasNextInt()) {
+					System.out.print("Please enter an integer: ");
+					sc.next();
+				}
+				size = sc.nextInt();
+			}
 			board = new GameOfLife(size);
 		}
 		int i = 0;
@@ -36,13 +49,10 @@ public class GameOfLifeMain {
 			StdDraw.setPenColor(StdDraw.BLACK);
 			StdDraw.text(-1, -1, "" + i);
 			board.draw();
-			StdDraw.show(1);
+			StdDraw.show(50);
 			board.nextState();
 			i++;
 		}
-		board.draw();
-		StdDraw.show(50);
-
 		System.out.println("Thanks for playing. Press 0 to exit");
 		if (sc.nextInt() == 0) {
 			System.exit(0);
